@@ -10,16 +10,28 @@ import java.util.Arrays;
  * @author datafox
  */
 public class Solution extends SolutionBase {
+    private static final String[] DIGITS =
+            { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+
     public static void main(String[] args) {
         new Solution().run();
     }
 
     @Override
-    protected String solution(String input) {
-        int out = Arrays.stream(input.split("\n"))
+    protected String solution1(String input) {
+        return String.valueOf(Arrays
+                .stream(input.split("\n"))
                 .mapToInt(this::calculateLine)
-                .sum();
-        return String.valueOf(out);
+                .sum());
+    }
+
+    @Override
+    protected String solution2(String input) {
+        return String.valueOf(Arrays
+                .stream(input.split("\n"))
+                .map(this::toDigits)
+                .mapToInt(this::calculateLine)
+                .sum());
     }
 
     private int calculateLine(String line) {
@@ -38,5 +50,13 @@ public class Solution extends SolutionBase {
             }
         }
         return first * 10 + second;
+    }
+
+    private String toDigits(String input) {
+        for(int i = 0; i < DIGITS.length; i++) {
+            String s = DIGITS[i];
+            input = input.replaceAll(s, s + (i + 1) + s);
+        }
+        return input;
     }
 }
