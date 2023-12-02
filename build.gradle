@@ -9,7 +9,9 @@ subprojects {
     java {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
 
-        mainClassName = "me.datafox.advent.${getProject().getName()}.Solution"
+    application {
+        mainClass = "me.datafox.advent.${getProject().getName()}.Solution"
     }
 }
