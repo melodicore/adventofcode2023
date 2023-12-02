@@ -3,7 +3,6 @@ package me.datafox.advent.day1_2;
 import me.datafox.advent.SolutionBase;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Solution for advent of code day 1 part 2.
