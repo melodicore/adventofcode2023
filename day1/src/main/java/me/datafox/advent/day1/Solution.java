@@ -5,7 +5,7 @@ import me.datafox.advent.SolutionBase;
 import java.util.Arrays;
 
 /**
- * Solution for advent of code day 1 part 1.
+ * Solution for advent of code day 1.
  *
  * @author datafox
  */

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Solution for advent of code day 2 part 1.
+ * Solution for advent of code day 2.
  *
  * @author datafox
  */
