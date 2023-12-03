@@ -35,6 +35,9 @@ public class Solution extends SolutionBase {
         return String.valueOf(gears.stream().mapToInt(coord -> getGearValue(coord, numbers)).sum());
     }
 
+    /**
+     * Pads the List of Strings to hack around out-of-bounds array indices.
+     */
     private List<String> pad(List<String> input) {
         List<String> lines = new ArrayList<>(input);
         String dots = ".".repeat(lines.get(0).length());
@@ -44,6 +47,10 @@ public class Solution extends SolutionBase {
         return lines;
     }
 
+    /**
+     * Finds all numbers in each line and associate them into a map with the immediate area around the number as the
+     * key.
+     */
     private Map<Area,Integer> getNumbers(List<String> input) {
         Map<Area,Integer> map = new HashMap<>();
         for(int y = 0; y < input.size(); y++) {
@@ -66,12 +73,18 @@ public class Solution extends SolutionBase {
         return map;
     }
 
+    /**
+     * Finds the areas of numbers that do not have a symbol in the immediate area around them.
+     */
     private Set<Area> getRemoved(List<String> lines, Set<Area> numbers) {
         return numbers.stream()
                 .filter(Predicate.not(area -> hasSymbol(lines, area)))
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns true if the given area contains a symbol that is not a dot or a digit.
+     */
     private boolean hasSymbol(List<String> lines, Area area) {
         for(int y = area.y1; y < area.y2 + 1; y++) {
             for(int x = area.x1; x < area.x2 + 1; x++) {
@@ -84,6 +97,9 @@ public class Solution extends SolutionBase {
         return false;
     }
 
+    /**
+     * Finds coordinates of all stars in the input.
+     */
     private Set<Coord> getStars(List<String> input) {
         Set<Coord> stars = new HashSet<>();
         for(int y = 0; y < input.size(); y++) {
@@ -97,6 +113,9 @@ public class Solution extends SolutionBase {
         return stars;
     }
 
+    /**
+     * Finds coordinates of all stars that have exactly two numbers in the immediate area around them.
+     */
     private Set<Coord> getGears(Set<Coord> stars, Set<Area> numbers) {
         Set<Coord> gears = new HashSet<>();
         for(Coord coord : stars) {
@@ -107,6 +126,9 @@ public class Solution extends SolutionBase {
         return gears;
     }
 
+    /**
+     * Multiplies the two numbers that are in the immediate area around a coordinate.
+     */
     private int getGearValue(Coord coord, Map<Area,Integer> numbers) {
         return numbers.entrySet().stream()
                 .filter(entry -> containsCoord(entry.getKey(), coord))
@@ -114,6 +136,9 @@ public class Solution extends SolutionBase {
                 .reduce(1, (i, j) -> i * j);
     }
 
+    /**
+     * Returns true if a coordinate is within an area.
+     */
     private boolean containsCoord(Area area, Coord coord) {
         return area.x1 <= coord.x &&
                 area.y1 <= coord.y &&
