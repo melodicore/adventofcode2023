@@ -27,16 +27,14 @@ public class Solution extends SolutionBase {
 
     @Override
     protected String solution1(String input) {
-        return String.valueOf(Arrays
-                .stream(input.split("\n"))
+        return String.valueOf(input.lines()
                 .mapToInt(this::calculateLine)
                 .sum());
     }
 
     @Override
     protected String solution2(String input) {
-        return String.valueOf(Arrays
-                .stream(input.split("\n"))
+        return String.valueOf(input.lines()
                 .mapToInt(this::calculateProduct)
                 .sum());
     }

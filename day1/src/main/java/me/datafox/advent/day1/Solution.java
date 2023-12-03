@@ -2,8 +2,6 @@ package me.datafox.advent.day1;
 
 import me.datafox.advent.SolutionBase;
 
-import java.util.Arrays;
-
 /**
  * Solution for advent of code day 1.
  *
@@ -21,16 +19,14 @@ public class Solution extends SolutionBase {
 
     @Override
     protected String solution1(String input) {
-        return String.valueOf(Arrays
-                .stream(input.split("\n"))
+        return String.valueOf(input.lines()
                 .mapToInt(this::calculateLine)
                 .sum());
     }
 
     @Override
     protected String solution2(String input) {
-        return String.valueOf(Arrays
-                .stream(input.split("\n"))
+        return String.valueOf(input.lines()
                 .map(this::toDigits)
                 .mapToInt(this::calculateLine)
                 //Sum together
