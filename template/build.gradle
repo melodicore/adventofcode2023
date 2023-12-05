@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+
+group = 'me.datafox.advent2023'
+version = '1.0-SNAPSHOT'
+
+dependencies {
+    implementation project(path: ':')
+}

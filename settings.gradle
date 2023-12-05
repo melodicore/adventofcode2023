@@ -1,4 +1,5 @@
 rootProject.name = 'adventofcode'
+include 'template'
 include 'day1'
 include 'day2'
 include 'day3'
