@@ -3,7 +3,6 @@ package me.datafox.advent.day5;
 import me.datafox.advent.SolutionBase;
 
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -68,49 +67,29 @@ public class Solution extends SolutionBase {
             ranges.add(new Range(seeds[i], seeds[i] + seeds[i+1]));
         }
 
-        System.out.println("Ranges:\n" + ranges);
-
         Map<String,Mapper> mappers = Arrays
                 .stream(input.split("\n\n"))
                 .collect(Collectors.toMap(
                         this::getKey,
                         this::parseMapper));
 
-        //System.out.println("Mappers:\n" + mappers);
-
         Set<Range> out = new HashSet<>(ranges);
+
         keys.stream()
-            .peek(new Consumer<String>() {
-                @Override
-                public void accept(String s) {
-                    System.out.println("For key:\n" + s);
-                }
-            })
             .map(mappers::get)
-            .peek(new Consumer<Mapper>() {
-                @Override
-                public void accept(Mapper mapper) {
-                    System.out.println("With mapper:\n" + mapper);
-                }
-            })
             .forEachOrdered(mapper -> {
-                System.out.println("Start mapping ranges:\n" + out);
-                Set<Range> original = new HashSet<>(out);
-                out.clear();
-                for(Range r : original) {
-                    System.out.println("Range:\n" + r);
-                    Set<Range> temp = mapper.mapRange(r);
-                    System.out.println("Mapped to:\n" + temp);
-                    temp = combineRanges(temp);
-                    System.out.println("Combined to:\n" + temp);
-                    out.addAll(temp);
+                Set<Range> temp = new HashSet<>();
+                for(Range r : new HashSet<>(out)) {
+                    temp.addAll(combineRanges(mapper.mapRange(r)));
                 }
-                Set<Range> temp = combineRanges(out);
                 out.clear();
-                out.addAll(temp);
-                System.out.println("Ranges mapped and combined:\n" + out);
+                out.addAll(combineRanges(temp));
             });
-        return out.stream().min(Comparator.comparingLong(Range::start)).toString();
+
+        return String.valueOf(out.stream()
+                .min(Comparator.comparingLong(Range::start))
+                .map(Range::start)
+                .orElse(-1L));
     }
 
     private Set<Range> combineRanges(Set<Range> ranges) {
@@ -203,28 +182,22 @@ public class Solution extends SolutionBase {
                 out.add(split);
                 return out;
             }
-            System.out.println("Range: " + split + ", Other: " + other);
             if(split.start >= other.start && split.end <= other.end) {
-                System.out.println("Range is completely within other");
                 Range r = new Range(other.convert(split.start, ranges.get(other)),
                         other.convert(split.end, ranges.get(other)));
-                System.out.println("Range split and converted to:\n" + r);
                 out.add(r);
                 return out;
             }
             if(split.start < other.start) {
-                System.out.println("Range starts before other");
                 out.add(new Range(split.start, other.start));
                 split = new Range(other.start, split.end);
             }
             if(split.end > other.end) {
-                System.out.println("Range ends after other");
                 out.add(new Range(other.end, split.end));
                 split = new Range(split.start, other.end);
             }
             out.add(0, new Range(other.convert(split.start, ranges.get(other)),
                     other.convert(split.end, ranges.get(other))));
-            System.out.println("Range split and converted to:\n" + out);
             return out;
         }
 
