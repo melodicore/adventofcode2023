@@ -21,21 +21,21 @@ public class Solution extends SolutionBase {
         String[] split = input.split("\n");
         int[] time = Arrays.stream(split[0].split(" +", 2)[1].split(" +")).mapToInt(Integer::parseInt).toArray();
         int[] distance = Arrays.stream(split[1].split(" +", 2)[1].split(" +")).mapToInt(Integer::parseInt).toArray();
-        System.out.println(Arrays.toString(time));
-        System.out.println(Arrays.toString(distance));
+        return String.valueOf(calculate(time, distance));
+    }
+
+    private int calculate(int[] time, int[] distance) {
         int result = 1;
         for(int i = 0; i < time.length; i++) {
             int ways = 0;
             for(int j = 1; j < time[i]; j++) {
                 if(j * (time[i] - j) > distance[i]) {
-                    System.out.println(time[i] + ", " + distance[i] + ", " + j);
                     ways++;
                 }
             }
-            System.out.println(time[i] + ", " + distance[i] + ", " + ways);
             result *= ways;
         }
-        return String.valueOf(result);
+        return result;
     }
 
     @Override
