@@ -19,15 +19,23 @@ public class Solution extends SolutionBase {
     @Override
     protected String solution1(String input) {
         String[] split = input.split("\n");
-        int[] time = Arrays.stream(split[0].split(" +", 2)[1].split(" +")).mapToInt(Integer::parseInt).toArray();
-        int[] distance = Arrays.stream(split[1].split(" +", 2)[1].split(" +")).mapToInt(Integer::parseInt).toArray();
+        long[] time = Arrays.stream(split[0].split(" +", 2)[1].split(" +")).mapToLong(Long::parseLong).toArray();
+        long[] distance = Arrays.stream(split[1].split(" +", 2)[1].split(" +")).mapToLong(Long::parseLong).toArray();
         return String.valueOf(calculate(time, distance));
     }
 
-    private int calculate(int[] time, int[] distance) {
-        int result = 1;
+    @Override
+    protected String solution2(String input) {
+        String[] split = input.split("\n");
+        long time = Long.parseLong(String.join("", split[0].split(" +", 2)[1].split(" +")));
+        long distance = Long.parseLong(String.join("", split[1].split(" +", 2)[1].split(" +")));
+        return String.valueOf(calculate(new long[] {time}, new long[] {distance}));
+    }
+
+    private long calculate(long[] time, long[] distance) {
+        long result = 1;
         for(int i = 0; i < time.length; i++) {
-            int ways = 0;
+            long ways = 0;
             for(int j = 1; j < time[i]; j++) {
                 if(j * (time[i] - j) > distance[i]) {
                     ways++;
@@ -36,10 +44,5 @@ public class Solution extends SolutionBase {
             result *= ways;
         }
         return result;
-    }
-
-    @Override
-    protected String solution2(String input) {
-        return "";
     }
 }
