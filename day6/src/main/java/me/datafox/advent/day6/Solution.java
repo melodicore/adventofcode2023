@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Solution for advent of code day 6.
  *
- * @see <a href=https://adventofcode.com/2023/day/?>https://adventofcode.com/2023/day/6</a>
+ * @see <a href=https://adventofcode.com/2023/day/6>https://adventofcode.com/2023/day/6</a>
  *
  * @author datafox
  */

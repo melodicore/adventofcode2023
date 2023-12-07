@@ -29,7 +29,6 @@ public class Solution extends SolutionBase {
         return String.valueOf(input.lines()
                 .map(this::toDigits)
                 .mapToInt(this::calculateLine)
-                //Sum together
                 .sum());
     }
 
