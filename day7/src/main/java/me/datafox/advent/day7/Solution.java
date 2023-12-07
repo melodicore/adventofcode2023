@@ -29,28 +29,18 @@ public class Solution extends SolutionBase {
                 .lines()
                 .sorted(this::compareHands)
                 .mapToInt(s -> Integer.parseInt(s.split(" ")[1]))
-                .map(new IntUnaryOperator() {
-                    int count = 1;
-                    @Override
-                    public int applyAsInt(int operand) {
-                        return operand * count++;
-                    }
-                }).sum());
+                .map(new CountingMultiplier())
+                .sum());
     }
 
     @Override
     protected String solution2(String input) {
         return String.valueOf(input
                 .lines()
-                .sorted(this::compareHands2)
+                .sorted(this::compareHandsWithJoker)
                 .mapToInt(s -> Integer.parseInt(s.split(" ")[1]))
-                .map(new IntUnaryOperator() {
-                    int count = 1;
-                    @Override
-                    public int applyAsInt(int operand) {
-                        return operand * count++;
-                    }
-                }).sum());
+                .map(new CountingMultiplier())
+                .sum());
     }
 
     private int compareHands(String hand1, String hand2) {
@@ -63,7 +53,23 @@ public class Solution extends SolutionBase {
             char card1 = hand1.charAt(i);
             char card2 = hand2.charAt(i);
             if(card1 != card2) {
-                return compareCards(card1, card2);
+                return compareCards(card1, card2, cards);
+            }
+        }
+        return 0;
+    }
+
+    private int compareHandsWithJoker(String hand1, String hand2) {
+        int value1 = getHandValueWithJoker(hand1.substring(0, 5));
+        int value2 = getHandValueWithJoker(hand2.substring(0, 5));
+        if(value1 != value2) {
+            return Integer.compare(value1, value2);
+        }
+        for(int i = 0;i < 5; i++) {
+            char card1 = hand1.charAt(i);
+            char card2 = hand2.charAt(i);
+            if(card1 != card2) {
+                return compareCards(card1, card2, cards2);
             }
         }
         return 0;
@@ -89,36 +95,7 @@ public class Solution extends SolutionBase {
         return hands.length;
     }
 
-    private int compareCards(char card1, char card2) {
-        return Integer.compare(indexOf(card1), indexOf(card2));
-    }
-
-    private int indexOf(char card) {
-        for(int i = 0; i < cards.length; i++) {
-            if(cards[i] == card) {
-                return i;
-            }
-        }
-        return cards.length;
-    }
-
-    private int compareHands2(String hand1, String hand2) {
-        int value1 = getHandValue2(hand1.substring(0, 5));
-        int value2 = getHandValue2(hand2.substring(0, 5));
-        if(value1 != value2) {
-            return Integer.compare(value1, value2);
-        }
-        for(int i = 0;i < 5; i++) {
-            char card1 = hand1.charAt(i);
-            char card2 = hand2.charAt(i);
-            if(card1 != card2) {
-                return compareCards2(card1, card2);
-            }
-        }
-        return 0;
-    }
-
-    private int getHandValue2(String hand) {
+    private int getHandValueWithJoker(String hand) {
         Map<Character,Integer> map = new HashMap<>();
         int jokers = 0;
         for(char c : hand.toCharArray()) {
@@ -152,16 +129,25 @@ public class Solution extends SolutionBase {
         return hands.length;
     }
 
-    private int compareCards2(char card1, char card2) {
-        return Integer.compare(indexOf2(card1), indexOf2(card2));
+    private int compareCards(char card1, char card2, char[] arr) {
+        return Integer.compare(indexOf(card1, arr), indexOf(card2, arr));
     }
 
-    private int indexOf2(char card) {
-        for(int i = 0; i < cards2.length; i++) {
-            if(cards2[i] == card) {
+    private int indexOf(char card, char[] arr) {
+        for(int i = 0; i < arr.length; i++) {
+            if(arr[i] == card) {
                 return i;
             }
         }
-        return cards2.length;
+        return arr.length;
+    }
+
+    private static class CountingMultiplier implements IntUnaryOperator {
+        int count = 1;
+
+        @Override
+        public int applyAsInt(int operand) {
+            return operand * count++;
+        }
     }
 }
