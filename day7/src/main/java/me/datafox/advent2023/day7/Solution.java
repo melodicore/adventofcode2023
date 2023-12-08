@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.function.IntUnaryOperator;
 
 /**
- * Solution for advent of code day 7.
+ * Solution for advent of code 2023 day 7.
  *
  * @see <a href=https://adventofcode.com/2023/day/7>https://adventofcode.com/2023/day/7</a>
  *

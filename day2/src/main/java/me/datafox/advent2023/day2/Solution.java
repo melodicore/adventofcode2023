@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Solution for advent of code day 2.
+ * Solution for advent of code 2023 day 2.
  *
  * @see <a href=https://adventofcode.com/2023/day/2>https://adventofcode.com/2023/day/2</a>
  *

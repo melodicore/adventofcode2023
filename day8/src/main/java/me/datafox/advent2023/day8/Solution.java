@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Solution for advent of code day 8.
+ * Solution for advent of code 2023 day 8.
  *
  * @see <a href=https://adventofcode.com/2023/day/8>https://adventofcode.com/2023/day/8</a>
  *

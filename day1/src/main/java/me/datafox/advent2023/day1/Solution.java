@@ -3,7 +3,7 @@ package me.datafox.advent2023.day1;
 import me.datafox.advent2023.SolutionBase;
 
 /**
- * Solution for advent of code day 1.
+ * Solution for advent of code 2023 day 1.
  *
  * @see <a href=https://adventofcode.com/2023/day/1>https://adventofcode.com/2023/day/1</a>
  *

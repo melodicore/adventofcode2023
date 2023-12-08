@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Solution for advent of code day 4.
+ * Solution for advent of code 2023 day 4.
  *
  * @see <a href=https://adventofcode.com/2023/day/4>https://adventofcode.com/2023/day/4</a>
  *

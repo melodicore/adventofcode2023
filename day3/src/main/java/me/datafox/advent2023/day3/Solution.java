@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * Solution for advent of code day 3.
+ * Solution for advent of code 2023 day 3.
  *
  * @see <a href=https://adventofcode.com/2023/day/3>https://adventofcode.com/2023/day/3</a>
  *

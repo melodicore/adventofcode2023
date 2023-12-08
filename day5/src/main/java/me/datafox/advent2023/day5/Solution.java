@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Solution for advent of code day 5.
+ * Solution for advent of code 2023 day 5.
  *
  * @see <a href=https://adventofcode.com/2023/day/5>https://adventofcode.com/2023/day/5</a>
  *
