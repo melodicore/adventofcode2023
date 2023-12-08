@@ -1,6 +1,6 @@
-package me.datafox.advent.day3;
+package me.datafox.advent2023.day3;
 
-import me.datafox.advent.SolutionBase;
+import me.datafox.advent2023.SolutionBase;
 
 import java.util.*;
 import java.util.function.Predicate;

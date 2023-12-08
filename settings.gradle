@@ -1,4 +1,4 @@
-rootProject.name = 'adventofcode'
+rootProject.name = 'adventofcode2023'
 include 'template'
 include 'day1'
 include 'day2'

@@ -1,4 +1,4 @@
-package me.datafox.advent;
+package me.datafox.advent2023;
 
 import java.io.IOException;
 import java.io.InputStream;

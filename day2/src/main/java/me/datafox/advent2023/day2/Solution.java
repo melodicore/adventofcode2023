@@ -1,6 +1,6 @@
-package me.datafox.advent.day2;
+package me.datafox.advent2023.day2;
 
-import me.datafox.advent.SolutionBase;
+import me.datafox.advent2023.SolutionBase;
 
 import java.util.Arrays;
 import java.util.HashMap;

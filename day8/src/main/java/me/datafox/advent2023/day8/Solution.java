@@ -1,6 +1,6 @@
-package me.datafox.advent.day8;
+package me.datafox.advent2023.day8;
 
-import me.datafox.advent.SolutionBase;
+import me.datafox.advent2023.SolutionBase;
 
 import java.math.BigInteger;
 import java.util.*;

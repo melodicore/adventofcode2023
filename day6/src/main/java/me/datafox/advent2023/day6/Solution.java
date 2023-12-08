@@ -1,6 +1,6 @@
-package me.datafox.advent.day6;
+package me.datafox.advent2023.day6;
 
-import me.datafox.advent.SolutionBase;
+import me.datafox.advent2023.SolutionBase;
 
 import java.util.Arrays;
 

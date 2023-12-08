@@ -1,6 +1,6 @@
-package me.datafox.advent.day1;
+package me.datafox.advent2023.day1;
 
-import me.datafox.advent.SolutionBase;
+import me.datafox.advent2023.SolutionBase;
 
 /**
  * Solution for advent of code day 1.
