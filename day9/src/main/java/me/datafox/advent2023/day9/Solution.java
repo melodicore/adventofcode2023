@@ -31,7 +31,12 @@ public class Solution extends SolutionBase {
 
     @Override
     protected String solution2(String input) {
-        return "";
+        return String.valueOf(input
+                .lines()
+                .map(this::getSequence)
+                .map(this::fillSequence)
+                .mapToInt(this::getPrevious)
+                .sum());
     }
 
     private int[] getSequence(String s) {
@@ -69,6 +74,15 @@ public class Solution extends SolutionBase {
         Collections.reverse(list);
         for(int[] ints : list) {
             result += ints[ints.length - 1];
+        }
+        return result;
+    }
+
+    private int getPrevious(List<int[]> list) {
+        int result = 0;
+        Collections.reverse(list);
+        for(int[] ints : list) {
+            result = ints[0] - result;
         }
         return result;
     }
