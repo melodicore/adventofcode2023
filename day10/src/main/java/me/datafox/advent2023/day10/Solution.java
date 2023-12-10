@@ -62,7 +62,35 @@ public class Solution extends SolutionBase {
 
     @Override
     protected String solution2(String input) {
-        return "";
+        char[][] map = input.lines().map(String::toCharArray).toArray(char[][]::new);
+        Coord start = getChar(map, 'S');
+        changeToPipe(map, start);
+        Set<Coord> visited = new HashSet<>();
+        visited.add(start);
+        Coord[] current = new Coord[] { start, start };
+        wh: while(true) {
+            for(int i = 0; i < 2; i++) {
+                Optional<Coord> o =  pipes
+                        .get(current[i].getChar(map))
+                        .stream()
+                        .map(current[i]::add)
+                        .filter(Predicate.not(visited::contains))
+                        .findAny();
+                if(o.isEmpty()) {
+                    break wh;
+                }
+                current[i] = o.get();
+                visited.add(o.get());
+            }
+        }
+        for(int y = 0; y < map.length; y++) {
+            for(int x = 0; x < map[y].length; x++) {
+                if(!visited.contains(new Coord(x, y))) {
+                    map[y][x] = '.';
+                }
+            }
+        }
+        return String.valueOf(countInside(map));
     }
 
     private Coord getChar(char[][] map, char c) {
@@ -99,6 +127,30 @@ public class Solution extends SolutionBase {
                 .map(Map.Entry::getKey)
                 .findFirst()
                 .ifPresent(c -> coord.setChar(map, c));
+    }
+
+    private int countInside(char[][] map) {
+        int counter = 0;
+        boolean inside = false;
+        char lastCorner = ' ';
+        for(char[] chars : map) {
+            for(char c : chars) {
+                if(c == '.' && inside) {
+                    counter++;
+                    continue;
+                }
+                if(c == '|') {
+                    inside = !inside;
+                }
+                if(c == 'L' || c == 'F') {
+                    lastCorner = c;
+                }
+                if(c == 'J' && lastCorner == 'F' || c == '7' && lastCorner == 'L') {
+                    inside = !inside;
+                }
+            }
+        }
+        return counter;
     }
 
     private record Coord(int x, int y) {
