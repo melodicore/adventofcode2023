@@ -36,7 +36,7 @@ public class Solution extends SolutionBase {
     @Override
     protected String solution1(String input) {
         char[][] map = input.lines().map(String::toCharArray).toArray(char[][]::new);
-        Coord start = getChar(map, 'S');
+        Coord start = getStart(map);
         changeToPipe(map, start);
         Set<Coord> visited = new HashSet<>();
         visited.add(start);
@@ -63,7 +63,7 @@ public class Solution extends SolutionBase {
     @Override
     protected String solution2(String input) {
         char[][] map = input.lines().map(String::toCharArray).toArray(char[][]::new);
-        Coord start = getChar(map, 'S');
+        Coord start = getStart(map);
         changeToPipe(map, start);
         Set<Coord> visited = new HashSet<>();
         visited.add(start);
@@ -93,10 +93,10 @@ public class Solution extends SolutionBase {
         return String.valueOf(countInside(map));
     }
 
-    private Coord getChar(char[][] map, char c) {
+    private Coord getStart(char[][] map) {
         for(int y = 0; y < map.length; y++) {
             for(int x = 0; x < map[y].length; x++) {
-                if(map[y][x] == c) {
+                if(map[y][x] == 'S') {
                     return new Coord(x, y);
                 }
             }
