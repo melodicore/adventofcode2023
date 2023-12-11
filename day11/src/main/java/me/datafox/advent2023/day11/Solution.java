@@ -9,9 +9,9 @@ import java.util.function.ToLongFunction;
 import java.util.stream.Collectors;
 
 /**
- * Solution for advent of code 2023 day 1.
+ * Solution for advent of code 2023 day 11.
  *
- * @see <a href=https://adventofcode.com/2023/day/1>https://adventofcode.com/2023/day/1</a>
+ * @see <a href=https://adventofcode.com/2023/day/11>https://adventofcode.com/2023/day/11</a>
  *
  * @author datafox
  */
